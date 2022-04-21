@@ -21,7 +21,7 @@ const { swagger_file, procjet_name } = program.opts()
  * @author Ryan
  * @description
  */
-codegen.washswat({
-  swagger: path.resolve(__dirname, swagger_file),
-  target_dir: path.resolve(__dirname, procjet_name),
+codegen.generate({
+  swagger: path.resolve(swagger_file),
+  target_dir: path.resolve(procjet_name),
 })
