@@ -1,3 +1,5 @@
+#!/usr/bin/env node
+
 const path = require("path")
 const codegen = require("./lib/codegen")
 const { program } = require("commander")
