@@ -3,7 +3,7 @@
 ## 개요
 
 ```text
-Swagger Yaml 파일 정보를 기반으로 Nest.js 프레임워크 프로젝트를 만들어주는 오픈소스
+Swagger Yaml 파일 정보를 기반으로 Nest.js 프레임워크 프로젝트를 만들어주는 코드 자동 생성 도구
 ```
 
 `Yaml 작성 방법은 링크를 통해 학습하시는 걸 추천드립니다.` [Swagger](https://any-ting.tistory.com/37)
