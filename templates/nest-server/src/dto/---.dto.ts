@@ -2,6 +2,7 @@ import { {{#each classValidatorList}} {{this}}, {{/each}} } from 'class-validato
 {{#each importRequestDto}}import { {{this}} } from './{{this}}.dto'; {{/each}}
 
 export class {{className}} {
+    
 {{#each variableList}} 
     {{this.variableClassValidator}}
     {{this.variable}}
