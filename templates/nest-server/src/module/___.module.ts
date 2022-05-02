@@ -1,6 +1,6 @@
 import { Module } from '@nestjs/common';
-import { {{domainName}}Controller } from '../controller/{{domainName}}.controller';
-import { {{domainName}}Service } from '../service/{{domainName}}.service';
+{{#with domainInfo}}import { {{domainNameClass}}Controller } from '../controller/{{domainFrom}}.controller';{{/with}}
+{{#with domainInfo}}import { {{domainNameClass}}Service } from '../service/{{domainFrom}}.service';{{/with}}
 
 @Module({
   imports: [],

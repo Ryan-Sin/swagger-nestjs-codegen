@@ -1,10 +1,10 @@
 import { Module } from '@nestjs/common';
 {{#each modules}} 
-import { {{this}}Module} from './module/{{this}}.module';
+import { {{domainNameClass}}Module} from './module/{{domainFrom}}.module';
 {{/each}}
 
 @Module({
-  imports: [{{#each modules}} {{this}}Module, {{/each}}],
+  imports: [{{#each modules}} {{domainNameClass}}Module, {{/each}}],
   controllers: [],
   providers: [],
 })

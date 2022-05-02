@@ -1,5 +1,5 @@
 import { {{#each classValidatorList}} {{this}}, {{/each}} } from 'class-validator';
-{{#each importRequestDto}}import { {{this}} } from './data/{{this}}.data'; {{/each}}
+{{#each importRequestDto}}import { {{this}} } from './{{this}}.data'; {{/each}}
 
 export class {{className}} {
     
