@@ -24,7 +24,7 @@ async {{methodName}}({{#each this.parameters}}@{{in}}('{{headerKey}}') {{variabl
 
     await this.{{serviceName}}({{serviceParam}})
 
-    return await res.status(HttpStatus.OK).json({succse: true, data: {{#typeCheck temporaryData }} {{this}} {{/typeCheck}} })
+    return await res.status(HttpStatus.OK).json({success: true, data: {{#typeCheck temporaryData }} {{this}} {{/typeCheck}} })
   }
 {{/each}}
 }
