@@ -16,7 +16,6 @@ export class {{domainName}}Controller {
  * @summary {{summary}}
  * @description {{description}}
  */
-{{usePipes}}
 {{methodDecorator}}('{{paths}}')
 async {{methodName}}({{#each this.parameters}}@{{in}}('{{headerKey}}') {{variable}}:{{variableType}}, {{/each}}
     {{#each this.requestDto}}@Body() {{classVariableName}} : {{className}}, {{/each}}
