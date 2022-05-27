@@ -21,5 +21,6 @@ module.exports = {
     '@typescript-eslint/explicit-function-return-type': 'off',
     '@typescript-eslint/explicit-module-boundary-types': 'off',
     '@typescript-eslint/no-explicit-any': 'off',
+    '@typescript-eslint/no-inferrable-types': 'off', //초기 값 설정시 type 사라지는 미지정 Error off
   },
 };
