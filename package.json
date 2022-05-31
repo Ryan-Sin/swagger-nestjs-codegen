@@ -13,10 +13,22 @@
     "type": "git",
     "url": "https://github.com/Ryan-Sin/swagger-nestjs-codegen.git"
   },
+  "keywords": [
+    "node.js",
+    "nest.js",
+    "swagger",
+    "openapi",
+    "es6",
+    "es7",
+    "codegen",
+    "generator",
+    "yaml"
+  ],
   "author": {
     "name": "Ryan",
     "email": "ryansin937@gmail.com"
   },
+  "license": "MIT",
   "bugs": {
     "url": "https://github.com/Ryan-Sin/swagger-nestjs-codegen/issues"
   },
