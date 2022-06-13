@@ -7,8 +7,8 @@ export class {{className}}Dto {
     /**
      * @description {{this.variableDescription}}
      */        
-    {{this.variableClassValidator}}
-    {{this.variable}}{{#if this.varibaleExample}} = {{#typeCheck this.varibaleExample }} {{this}} {{/typeCheck}} {{/if}}
+    {{#each this.variableClassValidator}} {{this}} {{/each}}
+    {{{this.variable}}}{{#if this.varibaleExample}} = {{#typeCheck this.varibaleExample }} {{this}} {{/typeCheck}} {{/if}}
     
 {{/each}}
 }

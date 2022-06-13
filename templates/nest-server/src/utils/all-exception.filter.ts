@@ -34,7 +34,12 @@ export class AllExceptionsFilter implements ExceptionFilter {
         common: {
           createdAt: moment().format('YYYY-MM-DDTHH:mm:ss.SSSZ'),
           status: httpStatus >= 500 ? 'disaster' : 'fail',
-          message: exception.message,
+          message:
+            httpStatus >= 500
+              ? '개발 팀의 문의해주세요.'
+              : httpStatus < 500 && httpStatus >= 400
+              ? exception.response.message[0]
+              : exception.message,
         },
       },
       httpStatus,
