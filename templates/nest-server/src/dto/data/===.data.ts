@@ -5,7 +5,7 @@ export class {{className}}Data {
     
 {{#each variableList}} 
     /**
-     * @description {{this.variableDescription}}
+     * @description {{{this.variableDescription}}}
      */        
     {{#each this.variableClassValidator}} {{this}} {{/each}}
     {{{this.variable}}}{{#if this.varibaleExample}} = {{#typeCheck this.varibaleExample }} {{this}} {{/typeCheck}} {{/if}}

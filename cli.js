@@ -1,8 +1,8 @@
 #!/usr/bin/env node
 
-const path = require("path")
-const codegen = require("./lib/codegen")
-const { program } = require("commander")
+const path = require("path");
+const codegen = require("./lib/codegen");
+const { program } = require("commander");
 
 /**
  * Options:
@@ -13,9 +13,9 @@ const { program } = require("commander")
 program
   .requiredOption("-s, --swagger_file <swagger_file>")
   .requiredOption("-p, --procjet_name <procjet_name>")
-  .parse()
+  .parse();
 
-const { swagger_file, procjet_name } = program.opts()
+const { swagger_file, procjet_name } = program.opts();
 
 /**
  * @author Ryan
@@ -24,4 +24,4 @@ const { swagger_file, procjet_name } = program.opts()
 codegen.generate({
   swagger: path.resolve(swagger_file),
   target_dir: path.resolve(procjet_name),
-})
+});
