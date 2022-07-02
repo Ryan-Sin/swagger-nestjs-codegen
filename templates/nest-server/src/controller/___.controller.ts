@@ -5,25 +5,37 @@ import { Controller, Res, HttpStatus,
 } from '@nestjs/common';
 {{#with domainInfo}}import { {{domainNameClass}}Service } from '../service/{{domainFrom}}.service';{{/with}}
 import { Request, Response } from 'express';
+import {
+  ApiResponse,
+  ApiOperation,
+  ApiTags,
+} from '@nestjs/swagger';
 {{#each importRequestDto}}import { {{this.className}} } from  {{#typeCheck this.from }} {{this}} {{/typeCheck}};{{/each}}
 
 @Controller('{{rootPath}}')
+@ApiTags('{{rootPath}}')
 export class {{domainName}}Controller {
   {{#with domainInfo}} constructor(private readonly {{domainName}}Service: {{domainNameClass}}Service) {}{{/with}}
 
 {{#each router}}
-/**
- * @summary {{summary}}
- * @description {{description}}
- */
-{{methodDecorator}}('{{paths}}')
-async {{methodName}}({{#each this.parameters}}@{{in}}('{{headerKey}}') {{variable}}:{{variableType}}, {{/each}}
-    {{#each this.requestDto}}@Body() {{classVariableName}} : {{className}}, {{/each}}
-    @Res() res: Response)  {
+  @ApiOperation({
+    summary: '{{summary}}',
+    description: '{{description}}',
+  })
+  @ApiResponse({
+    description: '성공여부',
+    type: {{#exampleCheck temporaryData }}{{this}} {{/exampleCheck}}
+  })
+  {{methodDecorator}}('{{paths}}')
+  async {{methodName}}({{#each this.parameters}}@{{in}}('{{headerKey}}') {{variable}}:{{variableType}}, {{/each}}
+      {{#each this.requestDto}}@Body() {{classVariableName}} : {{className}}, {{/each}}
+      @Res() res: Response)
+      {
 
-    await this.{{serviceName}}({{serviceParam}})
+      await this.{{serviceName}}({{#each serviceParam}} {{this.variableName}},{{/each}})
 
-    return res.status(HttpStatus.OK).json({{#typeCheck temporaryData }} {{this}} {{/typeCheck}})
-  }
+      return res.status(HttpStatus.OK).json({{#typeCheck temporaryData }} {{this}} {{/typeCheck}})
+    }
 {{/each}}
+
 }
