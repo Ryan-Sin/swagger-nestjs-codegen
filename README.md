@@ -1,8 +1,13 @@
 # Swagger Codegen(Nest.js)
 
 ## A Company That Uses Open Source
-![washswat-log](https://user-images.githubusercontent.com/67081841/177003403-a13a652d-6a5c-44a3-9d05-1191b1104a02.png)
 
+<table style="text-align:center;">
+<tr>
+<td>
+<a href="https://www.getwashswat.com/?gclid=CjwKCAjw2f-VBhAsEiwAO4lNeP3LlRXljZXeH7q21GtGzndCzBvUjhEK7VMjEj6XxL9FmXnNPNDjhBoConoQAvD_BwE" target="_blank"><img src="https://user-images.githubusercontent.com/67081841/177003403-a13a652d-6a5c-44a3-9d05-1191b1104a02.png" width="200" valign="middle" /></a>
+</td>
+</table>
 
 ## Summary
 

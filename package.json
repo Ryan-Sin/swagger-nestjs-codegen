@@ -1,6 +1,6 @@
 {
   "name": "@newko/swagger-nestjs-codegen",
-  "version": "1.1.3",
+  "version": "1.2.0",
   "description": "Swagger Codegen Nest.js Framwork",
   "main": "./lib/codegen.js",
   "bin": {
@@ -39,9 +39,5 @@
     "handlebars": "^4.7.7",
     "js-yaml": "^3.13.1",
     "lodash": "^4.17.21"
-  },
-  "files": [
-    "./templates/nest-server/.git",
-    "./templates/nest-server/.gitignore"
-  ]
+  }
 }
