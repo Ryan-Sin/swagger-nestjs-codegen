@@ -8,7 +8,7 @@ export class {{className}}Data {
      @ApiProperty({
        description: '{{{this.variableDescription}}}',
        required: {{this.variableRequired}},
-      {{#if this.varibaleExample}}example: {{#exampleCheck this.varibaleExample }} '{{this}}'{{/exampleCheck}} {{/if}},
+      {{#if this.varibaleExample}}example: {{#exampleCheck this.varibaleExample }} '{{this}}'{{/exampleCheck}} {{/if}}
     })    
     {{#each this.variableClassValidator}}
     {{this}}
