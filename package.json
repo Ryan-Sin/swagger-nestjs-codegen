@@ -5,7 +5,7 @@
   "main": "./lib/codegen.js",
   "bin": {
     "codegen": "./cli.js",
-    "codegen-example": "./cli.js -s ./example/example.yaml -p ../swagger-nestjs-codegen-example"
+    "codegen-example": "./cli.js -m example"
   },
   "engines": {
     "node": ">=7.6"
@@ -31,7 +31,7 @@
   },
   "license": "MIT",
   "scripts": {
-    "test": "codegen-example -s ./example/example.yaml -p ../swagger-nestjs-codegen-example"
+    "test": "node ./cli.js -s ./example/example.yaml -p ../swagger-nestjs-codegen-example"
   },
   "bugs": {
     "url": "https://github.com/Ryan-Sin/swagger-nestjs-codegen/issues"

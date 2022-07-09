@@ -6,16 +6,29 @@ const { program } = require("commander");
 
 /**
  * Options:
+ *  -m, --mode <mode> 테스트 모드 여부
  *  -s, --swagger_file <swagger_file> 참조할 Swagger Yaml 파일
  *  -p, --procjet_name <procjet_name> 새롭게 생성할 프로젝트 이름
  */
 
+let swaggerFile;
+let procjetName;
+
 program
-  .requiredOption("-s, --swagger_file <swagger_file>")
-  .requiredOption("-p, --procjet_name <procjet_name>")
+  .option("-m, --mode <mode>", "Example Mode")
+  .option("-s, --swagger_file <swagger_file>")
+  .option("-p, --procjet_name <procjet_name>")
   .parse();
 
-const { swagger_file, procjet_name } = program.opts();
+const { mode, swagger_file, procjet_name } = program.opts();
+
+if (mode) {
+  swaggerFile = "./example/example.yaml";
+  procjetName = "../swagger-nestjs-codegen-example";
+} else {
+  swaggerFile = swagger_file;
+  procjetName = procjet_name;
+}
 
 const chalk = require("chalk");
 const inquirer = require("inquirer");
@@ -98,8 +111,8 @@ program.action(async (cmd, args) => {
        * @description codegen start
        */
       codegen.generate({
-        swagger: path.resolve(swagger_file),
-        target_dir: path.resolve(procjet_name),
+        swagger: path.resolve(swaggerFile),
+        target_dir: path.resolve(procjetName),
         options,
       });
     } else {
