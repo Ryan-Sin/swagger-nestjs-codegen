@@ -1,11 +1,11 @@
 {
   "name": "@newko/swagger-nestjs-codegen",
-  "version": "1.2.7",
+  "version": "1.2.8",
   "description": "Swagger Codegen Nest.js Framwork",
   "main": "./lib/codegen.js",
   "bin": {
     "codegen": "./cli.js",
-    "codegen-example": "./cli.js -m example"
+    "codegen-example": "./cli-example.js"
   },
   "engines": {
     "node": ">=7.6"

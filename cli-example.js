@@ -11,8 +11,16 @@ const { program } = require("commander");
  */
 
 program
-  .requiredOption("-s, --swagger_file <swagger_file>")
-  .requiredOption("-p, --procjet_name <procjet_name>")
+  .option(
+    "-s, --swagger_file <swagger_file>",
+    "Swagger File",
+    "./example/example.yaml"
+  )
+  .option(
+    "-p, --procjet_name <procjet_name>",
+    "Prodject Name",
+    "../swagger-nestjs-codegen-example"
+  )
   .parse();
 
 const { swagger_file, procjet_name } = program.opts();
