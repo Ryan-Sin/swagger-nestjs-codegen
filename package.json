@@ -4,7 +4,8 @@
   "description": "Swagger Codegen Nest.js Framwork",
   "main": "./lib/codegen.js",
   "bin": {
-    "codegen": "./cli.js"
+    "codegen": "./cli.js",
+    "codegen-test": "npm run test"
   },
   "engines": {
     "node": ">=7.6"
@@ -29,6 +30,9 @@
     "email": "ryansin937@gmail.com"
   },
   "license": "MIT",
+  "scripts": {
+    "test": "codegen -s ./test/test.yaml -p ../swagger-nestjs-codegen-test"
+  },
   "bugs": {
     "url": "https://github.com/Ryan-Sin/swagger-nestjs-codegen/issues"
   },
