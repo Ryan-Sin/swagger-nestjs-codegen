@@ -1,5 +1,17 @@
 # Swagger Codegen(Nest.js)
 
+Automatic code generation tool for creating Nest.js framework projects based on Swagger Yaml file information based on Open API 3.0 version
+
+<br/>
+
+# Stay in touch
+
+- Author - Ryan
+- Email - ryansin937@gmail.com
+- Blog - https://any-ting.tistory.com/
+
+<br/>
+
 ## A Company That Uses Open Source
 
 <table style="text-align:center;">
@@ -9,15 +21,6 @@
 </td>
 </table>
 
-## Summary
-
-```text
-Automatic code generation tool that creates Nest.js framework projects based on Swagger Yaml file information
-```
-
-[To create a yaml file](https://any-ting.tistory.com/37)
-
-<br/>
 <br/>
 
 ## Requirements
@@ -46,7 +49,7 @@ $ codegen -s [swagger.yaml] -p [project name]
 
 <br/>
 
-## Examples
+## CLI Examples
 
 ```bash
 # 1. How to create a project with a new name
@@ -60,6 +63,17 @@ options :
   -s, --swagger_file <swagger_file> (Swagger Yaml file to reference)
   -p, --procjet_name <procjet_name> (Name of the project you want to create)
 ```
+
+<br/>
+
+## Example Project
+
+```bash
+# Example File Path example/example.yaml (Running a example file)
+$ codegen-example
+```
+
+<br/>
 
 # YAML Creation Rules
 
@@ -126,18 +140,20 @@ paths:
 > Examples
 
 ```yaml
+#Set client request parameters
+#If you use the $ref reference method
 parameters:
   - $ref: "#/components/parameters/x-access-token"
   - in: query
     name: id
     required: true
-    description: Board Key
+    description: "board unique key"
     schema:
       type: number
 
   - in: query
     name: name
-    description: "Board Name"
+    description: "board name"
     schema:
       type: string
 ```
@@ -170,53 +186,58 @@ The class name is set (Ex: BoardCreateRequest)
 #Number One
 requestBody:
   #Request DTO Class Name
-  x-codegen-request-body-name: BoardCreateRequest
+  #If $ref is referenced immediately, the BoardCreate schema property referenced to the BoardCreateRequest class name is applied.
+  x-codegen-request-body-name: "BoardCreateRequest"
   content:
     application/json:
       schema:
         type: object
         $ref: "#/components/schemas/BoardCreate"
 
+
 #Number Two
 requestBody:
-  description: Board Create DTO
-  #Request DTO Class Name
+  description: "create board dto"
+  #x-codegen-request-body-name Request DTO Class Name
   x-codegen-request-body-name: "UpdateBoardRequest"
+  #If $ref is not referenced, the UpdateBoardRequest class is created based on the information declared in properties.
   content:
     application/json:
       schema:
         type: object
-        # x-codegen-request-body-name Class Properties
+        required:
+          - "id"
+          - "name"
+          - "comment"
         properties:
           id:
-            description: Board Key
+            description: "borad unique key"
             type: number
             example: 1
           name:
-            description: Board Name
+            description: "board name"
             type: string
-            example: Ryan Board
+            example: "ryan test board name"
           comment:
-            description: Board Comment
+            description: "board comment"
             type: object
             $ref: "#/components/schemas/Comment"
 
 #Number three
 responses:
   "200":
-    description: "success description"
+    description: "success info"
 
-    # x-codegen-request-body-name ResponseDTO Class Name
+    # x-codgen-request-body-name ResponseDTO Class Name
     x-codegen-request-body-name: "BoardListResponse"
     content:
       application/json:
         schema:
           type: object
+          required:
+            - "data"
           # x-codegen-request-body-name Class Properties
           properties:
-            common:
-              type: object
-              $ref: "#/components/schemas/CommonResponse"
             data:
               type: "array"
               items:
@@ -243,27 +264,37 @@ components:
   schemas:
     HealthCheck:
       type: object
+      required:
+        - "code"
+        - "success"
       properties:
         code:
-          description: Success Code
-          type: integer
+          description: "success code"
+          type: number
           example: 200
         success:
+          description: "success type"
           type: boolean
           example: true
 
-    # In the properties attribute, a single object reference with a different data model reference method should be set to the object type
+    #  In the properties attribute, a single object reference with a different data model reference method should be set to the object type
     Board:
       type: object
+      required:
+        - "id"
+        - "name"
+        - "eCommant"
       properties:
         id:
+          description: "board unique key"
           type: number
           example: 1
         name:
+          description: "board name"
           type: string
-          example: Board Name
+          example: "Board Name"
         eCommant:
-          description: Comment Object
+          description: "comment object"
           type: object
           $ref: "#/components/schemas/Comment"
 
@@ -271,56 +302,68 @@ components:
     # Array type must be set to array and items must be declared
     Board2:
       type: object
+      required:
+        - "id"
+        - "name"
+        - "eCommant"
       properties:
         id:
-          description: "Baord Key"
-          example: 1
+          description: "board unique key"
           type: number
+          example: 1
         name:
-          description: Board Name
-          example: Board Name
+          description: "board name"
           type: string
+          example: "Board Name"
         eCommant:
-          description: Comment Object
+          description: "comment object"
           type: array
           items:
             $ref: "#/components/schemas/Comment"
 
     Comment:
       type: object
+      required:
+        - "id"
+        - "content"
       properties:
         id:
+          description: "board unique key"
           type: number
-          description: "Comment Key"
           example: 1
         content:
+          description: "comment content"
           type: string
-          description: "Comment Content"
-          example: Hellow
+          example: "Hello, nice to meet you"
 
     BoardCreate:
-      description: Board Create
+      description: "create board"
       type: object
+      required:
+        - "id"
+        - "name"
+        - "oneCommant"
+        - "multiCommant"
       properties:
         id:
-          description: "Board Key"
-          example: 1
+          description: "board unique key"
           type: number
+          example: 1
         name:
-          description: Board Name
-          example: Board Name
+          description: "board name"
           type: string
+          example: "Board Name"
 
         # In the properties attribute, a single object reference with a different data model reference method should be set to the object type
         oneCommant:
-          description: One Comment
+          description: "one comment"
           type: object
           $ref: "#/components/schemas/Comment"
 
         # If it is an array type referring to another Data Model in properties properties
         # Array type must be set to array and items must be declared
         multiCommant:
-          description: MultiCommant
+          description: "multi commant"
           type: array
           items:
             $ref: "#/components/schemas/Comment"
