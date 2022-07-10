@@ -13,22 +13,21 @@ servers:
     url: http://localhost:3000
 
 paths:
-  ######################################################
-  # 서버 헬스체크
-  ######################################################
   /health-check:
     get:
       tags:
         - HealthCheck
-      summary: 서버 헬스체크
-      description: ELB가 해당 서버에 실행여부 체크
+      summary: Health check server....
+      description: Health check API for that server
 
+      #board @Controller Method Name
       operationId: healthCheck
 
       responses:
         "200":
-          description: 헬스 체크 반환 정보
-          # x-codegen-request-body-name ResponseDTO 클래스 이름
+          description: Health Check Return Information
+
+          # x-codgen-request-body-name ResponseDTO Class Name
           x-codegen-request-body-name: HealthCheckResponse
           content:
             "application/json":
@@ -40,22 +39,22 @@ paths:
       tags:
         - "Board"
 
-      summary: 게시판 전체 조회
-      description: 게시판 데이터 전체 조회 API
+      summary: Bulletin Full Lookup
+      description: Bulletin Full Lookup API
 
-      #board @Controller Method 이름
+      #board @Controller Method Name
       operationId: "updateBoardlistAll"
 
-      #클라이언트 요청 파라미터 설정
-      # $ref 참조 방식을 사용한다면
+      #Set client request parameters
+      #If you use the $ref reference method
       parameters:
         - $ref: "#/components/parameters/x-access-token"
 
       responses:
         "200":
-          description: "성공 200 정보"
+          description: "success info"
 
-          # x-codegen-request-body-name ResponseDTO 클래스 이름
+          # x-codgen-request-body-name ResponseDTO Class Name
           x-codegen-request-body-name: "BoardListResponse"
           content:
             application/json:
@@ -63,7 +62,7 @@ paths:
                 type: object
                 required:
                   - "data"
-                # x-codegen-request-body-name 클래스 속성 정의
+                # x-codegen-request-body-name Class Properties
                 properties:
                   data:
                     type: "array"
@@ -75,34 +74,34 @@ paths:
       tags:
         - "Board"
 
-      summary: 특정 게시판 전체 조회
-      description: 특정 게시판 데이터 전체 조회 API
+      summary: "Full view of a particular bulletin"
+      description: "Specific bulletin board data full lookup API"
 
-      #board @Controller Method 이름
+      #board @Controller Method Name
       operationId: "updateBoardlist"
 
-      #클라이언트 요청 파라미터 설정
-      # $ref 참조 방식을 사용한다면
+      #Set client request parameters
+      #If you use the $ref reference method
       parameters:
         - $ref: "#/components/parameters/x-access-token"
         - in: query
           name: id
           required: true
-          description: Board 고유 키
+          description: "board unique key"
           schema:
             type: number
 
         - in: query
           name: name
-          description: "게시글 이름"
+          description: "board name"
           schema:
             type: string
 
       responses:
         "200":
-          description: "성공 200 정보"
+          description: "success info"
 
-          # x-codegen-request-body-name ResponseDTO 클래스 이름
+          # x-codgen-request-body-name ResponseDTO Class Name
           x-codegen-request-body-name: "BoardListResponse"
           content:
             application/json:
@@ -110,7 +109,7 @@ paths:
                 type: object
                 required:
                   - "data"
-                # x-codegen-request-body-name 클래스 속성 정의
+                # x-codegen-request-body-name Class Properties
                 properties:
                   data:
                     type: "array"
@@ -121,18 +120,19 @@ paths:
     post:
       tags:
         - "Board"
-      summary: "게시판 생성"
-      description: 게시판 생성 API
+      summary: "create board"
+      description: "create board API"
 
+      #board @Controller Method Name
       operationId: createBoard
 
       parameters:
         - $ref: "#/components/parameters/x-access-token"
 
       requestBody:
-        #Request DTO 클래스 이름
-        # $ref를 바로 참조한다면 BoardCreateRequest 클래스 이름에 참조하는 BoardCreate스키마 속성이 적용됩니다.
-        x-codegen-request-body-name: BoardCreateRequest
+        #Request DTO Class Name
+        #If $ref is referenced immediately, the BoardCreate schema property referenced to the BoardCreateRequest class name is applied.
+        x-codegen-request-body-name: "BoardCreateRequest"
         content:
           application/json:
             schema:
@@ -141,27 +141,30 @@ paths:
 
       responses:
         "200":
-          x-codegen-request-body-name: CreateBoardResponse
-          description: 성공 정보
+          description: "success info"
+
+          # x-codegen-request-body-name ResponseDTO Class Name
+          x-codegen-request-body-name: "CreateBoardResponse"
           content:
             application/json:
               schema:
                 type: object
                 required:
                   - "data"
-                # x-codegen-request-body-name 클래스 속성 정의
+                # x-codegen-request-body-name Class Properties
                 properties:
                   data:
-                    description: 게시판 고유 아이디
+                    description: "borad unique key"
                     type: number
                     example: 1
   /board/update:
     put:
       tags:
         - "Board"
-      summary: 게시판 수정
-      description: 게시판 수정 API
+      summary: "update board"
+      description: "update board API"
 
+      #board @Controller Method Name
       operationId: "updateBoard"
 
       parameters:
@@ -173,10 +176,10 @@ paths:
           description: "Access-Token"
 
       requestBody:
-        description: 게시판 생성 DTO
-        #Request DTO 클래스 이름
+        description: "create board dto"
+        #x-codegen-request-body-name Request DTO Class Name
         x-codegen-request-body-name: "UpdateBoardRequest"
-        #$ref를 참조하지 않는다면 properties에 선언한 정보 기반으로 UpdateBoardRequest 클래스가 생성됩니다.
+        #If $ref is not referenced, the UpdateBoardRequest class is created based on the information declared in properties.
         content:
           application/json:
             schema:
@@ -187,32 +190,34 @@ paths:
                 - "comment"
               properties:
                 id:
-                  description: 게시판 고유 아이디
+                  description: "borad unique key"
                   type: number
                   example: 1
                 name:
-                  description: 게시판 이름
+                  description: "board name"
                   type: string
-                  example: 라이언 테스트 게시판 이름
+                  example: "ryan test board name"
                 comment:
-                  description: 게시판 댓글
+                  description: "board comment"
                   type: object
                   $ref: "#/components/schemas/Comment"
 
       responses:
         "200":
+          description: "success info"
+
+          # x-codegen-request-body-name ResponseDTO Class Name
           x-codegen-request-body-name: "UpdateBoardResponse"
-          description: 성공 정보
           content:
             application/json:
               schema:
                 type: object
                 required:
                   - "data"
-                # x-codegen-request-body-name 클래스 속성 정의
+                # x-codegen-request-body-name Class Properties
                 properties:
                   data:
-                    description: 게시판 고유 아이디
+                    description: "board unique key"
                     type: number
                     example: 1
 
@@ -221,36 +226,39 @@ paths:
       tags:
         - "Board"
 
-      summary: 게시판 삭제
-      description: 게시판 삭제 API
+      summary: "delete board"
+      description: "delete board API"
 
+      #board @Controller Method Name
       operationId: "deleteBoard"
 
       parameters:
         - in: path
           name: id
           required: true
-          description: Board 고유 키
+          description: "board unique key"
           schema:
             type: number
         - in: path
           name: test
           required: true
-          description: Test 데이터
+          description: "test data"
           schema:
             type: number
 
       responses:
         "200":
+          description: "Success Info"
+
+          # x-codegen-request-body-name ResponseDTO Class Name
           x-codegen-request-body-name: "DeleteResponse"
-          description: 성공 정보
           content:
             application/json:
               schema:
                 type: object
                 required:
                   - "success"
-                # x-codegen-request-body-name 클래스 속성 정의
+                # x-codegen-request-body-name Class Properties
                 properties:
                   success:
                     type: boolean
@@ -258,7 +266,6 @@ paths:
 
 components:
   schemas:
-    # properties 단순 속성 정의
     HealthCheck:
       type: object
       required:
@@ -266,14 +273,15 @@ components:
         - "success"
       properties:
         code:
-          description: 성공 코드
+          description: "success code"
           type: number
           example: 200
         success:
+          description: "success type"
           type: boolean
           example: true
 
-    # properties 속성안에 다른 Data Model 참조방식
+    #  In the properties attribute, a single object reference with a different data model reference method should be set to the object type
     Board:
       type: object
       required:
@@ -282,18 +290,20 @@ components:
         - "eCommant"
       properties:
         id:
+          description: "board unique key"
           type: number
           example: 1
         name:
+          description: "board name"
           type: string
-          example: 게시판 이름
+          example: "Board Name"
         eCommant:
-          description: 댓글 객체
+          description: "comment object"
           type: object
           $ref: "#/components/schemas/Comment"
 
-    # properties 속성안에 다른 Data Model을 참조하면서 Array 타입일 경우
-    # array 타입은 반드시 타입을 array로 설정하며 items를 선언해야합니다.
+    # If it is an array type referring to another Data Model in properties properties
+    # Array type must be set to array and items must be declared
     Board2:
       type: object
       required:
@@ -302,15 +312,15 @@ components:
         - "eCommant"
       properties:
         id:
-          description: "게시글 고유 아이디"
-          example: 1
+          description: "board unique key"
           type: number
+          example: 1
         name:
-          description: 게시판 이름
-          example: 게시판 이름
+          description: "board name"
           type: string
+          example: "Board Name"
         eCommant:
-          description: 댓글 객체
+          description: "comment object"
           type: array
           items:
             $ref: "#/components/schemas/Comment"
@@ -322,16 +332,16 @@ components:
         - "content"
       properties:
         id:
+          description: "board unique key"
           type: number
-          description: "댓글 고유 아이디"
           example: 1
         content:
+          description: "comment content"
           type: string
-          description: "댓글 내용"
-          example: 안녕하세요. 즐겁고 반가워요.
+          example: "Hello, nice to meet you"
 
     BoardCreate:
-      description: 게시판 생성
+      description: "create board"
       type: object
       required:
         - "id"
@@ -340,29 +350,29 @@ components:
         - "multiCommant"
       properties:
         id:
-          description: "게시글 고유 아이디"
-          example: 1
+          description: "board unique key"
           type: number
+          example: 1
         name:
-          description: 게시판 이름
-          example: 게시판 이름
+          description: "board name"
           type: string
+          example: "Board Name"
 
-        # properties 속성안에 다른 Data Model 참조방식 단일 객체 참조는 object 타입으로 설정해야한다.
+        # In the properties attribute, a single object reference with a different data model reference method should be set to the object type
         oneCommant:
-          description: 단일 댓글
+          description: "one comment"
           type: object
           $ref: "#/components/schemas/Comment"
 
-        # properties 속성안에 다른 Data Model을 참조하면서 Array 타입일 경우
-        # array 타입은 반드시 타입을 array로 설정하며 items를 선언해야합니다.
+        # If it is an array type referring to another Data Model in properties properties
+        # Array type must be set to array and items must be declared
         multiCommant:
-          description: 다중 댓글
+          description: "multi commant"
           type: array
           items:
             $ref: "#/components/schemas/Comment"
 
-  #name 값을 변수명으로 사용 없다면 key를 변수명으로 사용
+  #name If the value is not used as a variable name, use key as a variable name
   parameters:
     x-access-token:
       in: header
