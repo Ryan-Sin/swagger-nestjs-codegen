@@ -3,18 +3,21 @@
 const path = require("path");
 const codegen = require("./lib/codegen");
 const { program } = require("commander");
+const exec = require("child_process").execSync;
+
+//npm root path 조회
+const npmRootPath = exec("npm root -g").toString().trim();
 
 /**
  * Options:
  *  -s, --swagger_file <swagger_file> 참조할 Swagger Yaml 파일
  *  -p, --procjet_name <procjet_name> 새롭게 생성할 프로젝트 이름
  */
-
 program
   .option(
     "-s, --swagger_file <swagger_file>",
     "Swagger File",
-    "./example/example.yaml"
+    npmRootPath + "/@newko/swagger-nestjs-codegen/example/example.yaml"
   )
   .option(
     "-p, --procjet_name <procjet_name>",

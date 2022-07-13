@@ -32,23 +32,23 @@
     "class-transformer": "^0.5.1",
     "class-validator": "^0.13.2",
     "moment": "^2.29.3",
-    {{#if (checkMongoose options.orm)}}
-    "mongoose": "^6.4.2",
-    {{/if}}
-    {{#if (checkMySQL options.database)}}
-    "mysql2": "^2.3.3",
-    {{/if}}
     "reflect-metadata": "^0.1.13",
     "rimraf": "^3.0.2",
     "rxjs": "^7.2.0",
+    {{#if (checkMySQL options.database)}}
+    "mysql2": "^2.3.3",
+    {{/if}}
     {{#if (checkSequelize options.orm)}}
     "sequelize": "^6.21.2",
     "sequelize-typescript": "^2.1.3",
     {{/if}}
-    "swagger-ui-express": "^4.4.0",
     {{#if (checkTypeORM options.orm)}}
-    "typeorm": "^0.3.7"
+    "typeorm": "^0.3.7",
     {{/if}}
+    {{#if (checkMongoose options.orm)}}
+    "mongoose": "^6.4.2",
+    {{/if}}
+    "swagger-ui-express": "^4.4.0"
   },
   "devDependencies": {
     "@nestjs/cli": "^8.0.0",
