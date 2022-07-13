@@ -3,10 +3,10 @@
 const path = require("path");
 const codegen = require("./lib/codegen");
 const { program } = require("commander");
-const exec = require("child_process").execSync;
+const execSync = require("child_process").execSync;
 
 //npm root path 조회
-const npmRootPath = exec("npm root -g").toString().trim();
+const npmRootPath = execSync("npm root -g").toString().trim();
 
 /**
  * Options:
