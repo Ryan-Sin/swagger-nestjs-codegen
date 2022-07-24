@@ -1,12 +1,12 @@
-{{#if (checkTypeORM options.orm)}}
+{{#if (checkTypeORM moduleOptions.orm)}}
 import { DataSource } from 'typeorm';
 
-export const {{{options.variableType}}}Providers = [
+export const {{{moduleOptions.variableType}}}Providers = [
   {
     provide: 'DATA_SOURCE',
     useFactory: async () => {
       const AppDataSource = new DataSource({
-        type: '{{{options.database}}}',
+        type: '{{{moduleOptions.database}}}',
         host: process.env.MYSQL_MASTER_HOST,
         port: parseInt(process.env.MYSQL_MASTER_PORT),
         username: process.env.MYSQL_MASTER_USER,
@@ -21,15 +21,15 @@ export const {{{options.variableType}}}Providers = [
     },
   },
 ];
-{{else if (checkSequelize options.orm)}}
+{{else if (checkSequelize moduleOptions.orm)}}
 import { Sequelize } from 'sequelize-typescript';
 
-export const {{{options.variableType}}}Providers = [
+export const {{{moduleOptions.variableType}}}Providers = [
   {
     provide: 'SEQUELIZE',
     useFactory: async () => {
       const sequelize = new Sequelize({
-        dialect: '{{{options.database}}}',
+        dialect: '{{{moduleOptions.database}}}',
         host: process.env.MYSQL_MASTER_HOST,
         port: parseInt(process.env.MYSQL_MASTER_PORT),
         username: process.env.MYSQL_MASTER_USER,
@@ -42,10 +42,10 @@ export const {{{options.variableType}}}Providers = [
     },
   },
 ];
-{{else if (checkMongoose options.orm)}}
+{{else if (checkMongoose moduleOptions.orm)}}
 import * as mongoose from 'mongoose';
 
-export const {{{options.variableType}}}Providers = [
+export const {{{moduleOptions.variableType}}}Providers = [
   {
     provide: 'DATABASE_CONNECTION',
     useFactory: (): Promise<typeof mongoose> =>

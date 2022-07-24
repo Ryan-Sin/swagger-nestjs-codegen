@@ -1,8 +1,8 @@
 import { Module } from '@nestjs/common';
-import { {{{options.variableType}}}Providers } from './{{{options.database}}}.providers';
+import { {{{moduleOptions.variableType}}}Providers } from './{{{moduleOptions.database}}}.providers';
 
 @Module({
-  providers: [...{{{options.variableType}}}Providers],
-  exports: [...{{{options.variableType}}}Providers],
+  providers: [...{{{moduleOptions.variableType}}}Providers],
+  exports: [...{{{moduleOptions.variableType}}}Providers],
 })
-export class {{{options.variableType}}}Module {}
+export class {{{moduleOptions.variableType}}}Module {}
