@@ -75,6 +75,19 @@ $ codegen-example
 
 <br/>
 
+## Support for automatic module creation
+
+```bash
+  1. Databases
+     - MySQL : TypeORM, Sequlize
+     - MariaDB : TypeORM, Sequlize
+     - MongoDB : Mongose
+
+  2. Kafka
+```
+
+<br/>
+
 # YAML Creation Rules
 
 ## Common Rule
