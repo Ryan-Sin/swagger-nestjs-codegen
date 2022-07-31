@@ -49,7 +49,18 @@ export const {{{moduleOptions.variableType}}}Providers = [
   {
     provide: 'DATABASE_CONNECTION',
     useFactory: (): Promise<typeof mongoose> =>
-      mongoose.connect(`mongodb://${process.env.MYSQL_MASTER_HOST}:27017`),
+      mongoose.connect(        
+        `mongodb://${
+          process.env.MONGO_MASTER_HOST
+        }:${
+          process.env.MONGO_MASTER_PORT
+        }/`,
+        {
+          dbName: process.env.MONGO_MASTER_DATABASE,
+          user: process.env.MONGO_MASTER_USER,
+          pass: process.env.MONGO_MASTER_PASSWORD,
+        },
+      ),
   },
 ];
 {{else}}

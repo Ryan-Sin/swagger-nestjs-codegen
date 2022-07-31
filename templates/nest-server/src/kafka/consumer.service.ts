@@ -12,10 +12,9 @@ import {
  */
 @Injectable()
 export class ConsumerService implements OnApplicationShutdown {
-  
   private readonly kafa = new Kafka({
     //brokers는 카프카 호스트 경로를 설정한다.(여러 서버를 설정한다면 배열안에 여러 호스트 정보를 설정하면 된다.)
-    brokers: ['localhost:9092'],
+    brokers: [process.env.KAFKA_HOST1],
   });
 
   /**
@@ -24,9 +23,12 @@ export class ConsumerService implements OnApplicationShutdown {
    */
   private readonly consumers: Consumer[] = [];
 
-  async consume(topics: ConsumerSubscribeTopics, config: ConsumerRunConfig) {
-
-    const consumer = this.kafa.consumer({ groupId: 'ryan' });
+  async consume(
+    topics: ConsumerSubscribeTopics,
+    groupId: string,
+    config: ConsumerRunConfig,
+  ) {
+    const consumer = this.kafa.consumer({ groupId });
     await consumer.connect();
     await consumer.subscribe(topics);
     await consumer.run(config);

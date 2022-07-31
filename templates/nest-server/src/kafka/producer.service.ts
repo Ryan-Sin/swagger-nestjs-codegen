@@ -13,7 +13,8 @@ import { Kafka, Producer, ProducerRecord } from 'kafkajs';
 @Injectable()
 export class ProducerService implements OnModuleInit, OnApplicationShutdown {
   private readonly kafa = new Kafka({
-    brokers: ['localhost:9092'],
+    //brokers는 카프카 호스트 경로를 설정한다.(여러 서버를 설정한다면 배열안에 여러 호스트 정보를 설정하면 된다.)
+    brokers: [process.env.KAFKA_HOST1],
   });
 
   private readonly producer: Producer = this.kafa.producer();
@@ -29,7 +30,7 @@ export class ProducerService implements OnModuleInit, OnApplicationShutdown {
   /**
    * @author Ryan
    * @description Kafka 서버로 메세지를 보내는 메서드
-   * 
+   *
    * @param {ProducerRecord} record 메세지 정보
    *        @property {String} topic 브로커 토픽 이름
    *        @property {Message[]} messages 메세지

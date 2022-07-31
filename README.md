@@ -88,6 +88,18 @@ $ codegen-example
 
 <br/>
 
+## What to do after creating a project
+
+```bash
+ # Package install
+ $ npm i & yarn install
+
+ # Sort project code format
+ $ npm run format
+```
+
+<br/>
+
 # YAML Creation Rules
 
 ## Common Rule
