@@ -49,7 +49,7 @@
     {{#if (checkMongoose moduleOptions.orm)}}
     "mongoose": "^6.4.2",
     {{/if}}
-    {{#if moduleOptions.kafka}}
+    {{#if (checkKafka moduleOptions.kafka)}}
     "kafkajs": "^2.0.2",
     {{/if}}
     "swagger-ui-express": "^4.4.0"

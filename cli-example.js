@@ -36,12 +36,13 @@ program.action(async (cmd, args) => {
     console.log(chalk.bold.red("해당 명령어를 찾을 수 없습니다."));
     program.help(); // cli -h
   } else {
-    const options = {
+    const moduleOptions = {
       database: "not",
       databaseType: "",
       orm: "",
       cache: "not",
       cacheStorage: "",
+      kafka: {},
     };
 
     const { database } = await inquirer.prompt([
@@ -66,8 +67,8 @@ program.action(async (cmd, args) => {
         },
       ]);
 
-      options.database = database;
-      options.orm = orm;
+      moduleOptions.database = database;
+      moduleOptions.orm = orm;
     }
 
     const { kafka } = await inquirer.prompt([
@@ -129,8 +130,8 @@ program.action(async (cmd, args) => {
     //     },
     //   ]);
 
-    //   options.cache = cache;
-    //   options.cacheStorage = cacheStorage;
+    //   moduleOptions.cache = cache;
+    //   moduleOptions.cacheStorage = cacheStorage;
     // }
 
     const { confirm } = await inquirer.prompt([
@@ -149,7 +150,7 @@ program.action(async (cmd, args) => {
       codegen.generate({
         swagger: path.resolve(swagger_file),
         target_dir: path.resolve(procjet_name),
-        options,
+        moduleOptions,
       });
     } else {
       console.log(chalk.rgb(128, 128, 128)("Exit"));
