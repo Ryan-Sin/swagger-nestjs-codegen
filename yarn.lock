@@ -146,7 +146,7 @@
   "version" "3.0.0"
 
 "fs-extra@~0.6.1":
-  "integrity" "sha1-9G8MdbeEH40gCzNIzU1pHVoJnRU="
+  "integrity" "sha512-5rU898vl/Z948L+kkJedbmo/iltzmiF5bn/eEk0j/SgrPpI+Ydau9xlJPicV7Av2CHYBGz5LAlwTnBU80j1zPQ=="
   "resolved" "https://registry.npmjs.org/fs-extra/-/fs-extra-0.6.4.tgz"
   "version" "0.6.4"
   dependencies:
@@ -243,7 +243,7 @@
     "esprima" "^4.0.0"
 
 "jsonfile@~1.0.1":
-  "integrity" "sha1-6l7+QLg2kLmGZ2FKc5L8YOhCwN0="
+  "integrity" "sha512-KbsDJNRfRPF5v49tMNf9sqyyGqGLBcz1v5kZT01kG5ns5mQSltwxCKVmUzVKtEinkUnTDtSrp6ngWpV7Xw0ZlA=="
   "resolved" "https://registry.npmjs.org/jsonfile/-/jsonfile-1.0.1.tgz"
   "version" "1.0.1"
 
@@ -281,7 +281,7 @@
   "version" "0.0.8"
 
 "ncp@~0.4.2":
-  "integrity" "sha1-q8xsvT7C7Spyn/bnwfqPAXhKhXQ="
+  "integrity" "sha512-PfGU8jYWdRl4FqJfCy0IzbkGyFHntfWygZg46nFk/dJD/XRrk2cj0SsKSX9n5u5gE0E0YfEpKWrEkfjnlZSTXA=="
   "resolved" "https://registry.npmjs.org/ncp/-/ncp-0.4.2.tgz"
   "version" "0.4.2"
 
@@ -335,7 +335,7 @@
     "signal-exit" "^3.0.2"
 
 "rimraf@~2.2.0":
-  "integrity" "sha1-5Dm+Kq7jJzIZUnMPmaiSnk/FBYI="
+  "integrity" "sha512-R5KMKHnPAQaZMqLOsyuyUmcIjSeDm+73eoqQpaXA7AZ22BL+6C+1mcUscgOsNd8WVlJuvlgAPsegcx7pjlV0Dg=="
   "resolved" "https://registry.npmjs.org/rimraf/-/rimraf-2.2.8.tgz"
   "version" "2.2.8"
 
