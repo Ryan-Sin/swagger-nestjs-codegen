@@ -4,7 +4,8 @@
   "description": "Swagger Codegen Nest.js Framwork",
   "main": "./lib/codegen.js",
   "files": [
-    "/templates"
+    "./**",
+    "/templates/nest-server/.gitignore"
   ],
   "bin": {
     "codegen": "./cli.js",
