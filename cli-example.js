@@ -70,6 +70,44 @@ program.action(async (cmd, args) => {
       options.orm = orm;
     }
 
+    const { kafka } = await inquirer.prompt([
+      {
+        name: "kafka",
+        message: "Do you want to create a kafka module?",
+        type: "list",
+        default: "not",
+        choices: ["not", "producer", "consumer", "all"],
+      },
+    ]);
+
+    switch (kafka) {
+      case "all":
+        moduleOptions.kafka = {
+          producer: true,
+          consumer: true,
+        };
+        break;
+
+      case "producer":
+        moduleOptions.kafka = {
+          producer: true,
+          consumer: false,
+        };
+        break;
+
+      case "consumer":
+        moduleOptions.kafka = {
+          producer: false,
+          consumer: true,
+        };
+        break;
+
+      case "not":
+      default:
+        moduleOptions.kafka = false;
+        break;
+    }
+
     // const { cache } = await inquirer.prompt([
     //   {
     //     name: "cache",
