@@ -42,7 +42,7 @@ export class AllExceptionsFilter implements ExceptionFilter {
               : exception.message,
         },
       },
-      httpStatus,
+      200,
     );
   }
 }
