@@ -16,4 +16,4 @@ RUN npm run build
 
 # Port mapped to the docker daemon:
 EXPOSE 3000
-CMD ["./start.sh"]
+CMD ["bash", "start.sh"]
