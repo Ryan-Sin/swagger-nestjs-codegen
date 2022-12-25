@@ -38,7 +38,7 @@ export class AllExceptionsFilter implements ExceptionFilter {
             httpStatus >= 500
               ? '개발 팀의 문의해주세요.'
               : httpStatus < 500 && httpStatus >= 400
-              ? exception.response.message[0]
+              ? exception.response.message
               : exception.message,
         },
       },
