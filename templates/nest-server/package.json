@@ -47,6 +47,7 @@
     "typeorm": "^0.3.7",
     {{/if}}
     {{#if (checkMongoose moduleOptions.orm)}}
+    "@nestjs/mongoose": "^9.2.1",
     "mongoose": "^6.4.2",
     {{/if}}
     {{#if (checkKafka moduleOptions.kafka)}}
