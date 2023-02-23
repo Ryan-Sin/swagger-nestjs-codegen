@@ -1,73 +1,84 @@
-<p align="center">
-  <a href="http://nestjs.com/" target="blank"><img src="https://nestjs.com/img/logo_text.svg" width="320" alt="Nest Logo" /></a>
-</p>
+{{#isString swagger.title}} # {{{this}}} {{/isString}}
+{{#isString swagger.description}} ## {{{this}}} {{/isString}}
+<br/>
 
-[circleci-image]: https://img.shields.io/circleci/build/github/nestjs/nest/master?token=abc123def456
-[circleci-url]: https://circleci.com/gh/nestjs/nest
+### 초기 패키지 설치 및 Prettier 적용(Installing initial packages and applying Pretier)
 
-  <p align="center">A progressive <a href="http://nodejs.org" target="_blank">Node.js</a> framework for building efficient and scalable server-side applications.</p>
-    <p align="center">
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/v/@nestjs/core.svg" alt="NPM Version" /></a>
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/l/@nestjs/core.svg" alt="Package License" /></a>
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/dm/@nestjs/common.svg" alt="NPM Downloads" /></a>
-<a href="https://circleci.com/gh/nestjs/nest" target="_blank"><img src="https://img.shields.io/circleci/build/github/nestjs/nest/master" alt="CircleCI" /></a>
-<a href="https://coveralls.io/github/nestjs/nest?branch=master" target="_blank"><img src="https://coveralls.io/repos/github/nestjs/nest/badge.svg?branch=master#9" alt="Coverage" /></a>
-<a href="https://discord.gg/G7Qnnhy" target="_blank"><img src="https://img.shields.io/badge/discord-online-brightgreen.svg" alt="Discord"/></a>
-<a href="https://opencollective.com/nest#backer" target="_blank"><img src="https://opencollective.com/nest/backers/badge.svg" alt="Backers on Open Collective" /></a>
-<a href="https://opencollective.com/nest#sponsor" target="_blank"><img src="https://opencollective.com/nest/sponsors/badge.svg" alt="Sponsors on Open Collective" /></a>
-  <a href="https://paypal.me/kamilmysliwiec" target="_blank"><img src="https://img.shields.io/badge/Donate-PayPal-ff3f59.svg"/></a>
-    <a href="https://opencollective.com/nest#sponsor"  target="_blank"><img src="https://img.shields.io/badge/Support%20us-Open%20Collective-41B883.svg" alt="Support us"></a>
-  <a href="https://twitter.com/nestframework" target="_blank"><img src="https://img.shields.io/twitter/follow/nestframework.svg?style=social&label=Follow"></a>
-</p>
-  <!--[![Backers on Open Collective](https://opencollective.com/nest/backers/badge.svg)](https://opencollective.com/nest#backer)
-  [![Sponsors on Open Collective](https://opencollective.com/nest/sponsors/badge.svg)](https://opencollective.com/nest#sponsor)-->
-
-## Description
-
-[Nest](https://github.com/nestjs/nest) framework TypeScript starter repository.
-
-## Installation
-
-```bash
-$ npm install
+```sh
+npm install && npm run format
 ```
 
-## Running the app
+<br/>
 
-```bash
-# development
-$ npm run start
+### Swagger Doc
 
-# watch mode
-$ npm run start:dev
+- http://localhost:3000/api-docs/
 
-# production mode
-$ npm run start:prod
+<br/>
+
+### local build & running
+
+```sh
+npm run start:local
 ```
 
-## Test
+### deploy
 
-```bash
-# unit tests
-$ npm run test
-
-# e2e tests
-$ npm run test:e2e
-
-# test coverage
-$ npm run test:cov
+```sh
+npm run build & npm run start
 ```
 
-## Support
+### unit test
 
-Nest is an MIT-licensed open source project. It can grow thanks to the sponsors and support by the amazing backers. If you'd like to join them, please [read more here](https://docs.nestjs.com/support).
+```sh
+npm run test
+```
 
-## Stay in touch
+<br/>
 
-- Author - [Kamil Myśliwiec](https://kamilmysliwiec.com)
-- Website - [https://nestjs.com](https://nestjs.com/)
-- Twitter - [@nestframework](https://twitter.com/nestframework)
+## src skeleton
 
-## License
+```sh
+src
+├── /config
+│   └── .env.local
+├── /controller
+│   └── ...
+├── /dto
+│   └── ...
+├── /module
+│   └── ...
+├── /service
+│   └── ...
+├── /utils
+│   └── all-exception.filter.ts
+│   └── common-exception.filter.ts
+│   └── common-exception.ts
+│   └── constant.ts
+│   └── swagger.ts
+├── app.module.ts
+├── main.ts
+```
 
-Nest is [MIT licensed](LICENSE).
+- src/config : 프로젝트 환경변수 설정(Set Project Environment Variables)
+- src/controller : 클라이언트 요청/응답 처리(Client Request/Response Processing)
+- src/dto : 클라이언트 요청/응답 DTO(Tata Transfer Object) (Client Request/Response DTO(Tata Transfer Object))
+- src/module : 서비스 모듈 (Service Module)
+- src/service: 비즈니스 로직 (Business Logic)
+- src/utils : 공통 함수 (Common Features)
+- src/app.module.ts : Root 모듈 (Root Module)
+- src/main.ts : 프로젝트 실행 (Running a project)
+
+## git commit style
+
+- type
+  - feat : 새로운 기능 추가(add new features)
+  - fix : 버그 수정(bug fix)
+  - docs : 문서의 수정(doc fix)
+  - refactor : 코드를 리펙토링 (refectoring code)
+  - test : Test 관련한 코드의 추가, 수정(add or modify test-related code)
+  - chore : 코드의 수정 없이 설정을 변경 (change settings without code modification)
+
+```s
+작성 방법 - feat: 로그인 기능 추가 (How to create - feat: add login function )
+```
