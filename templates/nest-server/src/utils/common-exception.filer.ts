@@ -5,6 +5,8 @@ import {
   Logger,
   HttpStatus,
 } from '@nestjs/common';
+
+import { HttpAdapterHost } from '@nestjs/core';
 import { CommonError } from './common-exception';
 
 import * as moment from 'moment';
@@ -18,7 +20,11 @@ import * as moment from 'moment';
  */
 @Catch(CommonError)
 export class CommonExceptionFilter implements ExceptionFilter {
-  constructor(private readonly logger: Logger) {}
+  constructor(
+    private readonly httpAdapterHost: HttpAdapterHost,
+    private readonly logger: Logger,
+  ) {}
+
 
   /**
    * @author Ryan
@@ -28,18 +34,22 @@ export class CommonExceptionFilter implements ExceptionFilter {
    * @param host ArgumentsHost 객체 -> 핸들러에 전달되는 인수를 검색하는 메서드를 제공한다 (Express를 사용하는 경우 - Response & Request & Next 제공)
    */
   catch(commonError: CommonError, host: ArgumentsHost) {
+    const { httpAdapter } = this.httpAdapterHost;
     const ctx = host.switchToHttp();
-    const response = ctx.getResponse();
 
-    this.logger.debug(`${JSON.stringify(commonError.message)}`);
+    this.logger.error(`${JSON.stringify(commonError.message)}`);
 
     /* 클라이언트에게 정보를 전달한다. */
-    response.status(HttpStatus.OK).json({
+    httpAdapter.reply(
+      ctx.getResponse(),
+      {
       common: {
         createdAt: moment().format('YYYY-MM-DDTHH:mm:ss.SSSZ'),
         status: commonError.status,
         message: commonError.message,
       },
-    });
+      },
+      200,
+    );
   }
 }

@@ -13,7 +13,7 @@ async function bootstrap() {
   //예외 필터 연결
   app.useGlobalFilters(
     new AllExceptionsFilter(httpAdapter, new Logger('AllExceptions')),
-    new CommonExceptionFilter(new Logger('CommonException')),
+    new CommonExceptionFilter(httpAdapter, new Logger('CommonException')),
   );
 
   //Global Middleware 설정 -> Cors 속성 활성화
