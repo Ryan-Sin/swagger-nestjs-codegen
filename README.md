@@ -79,8 +79,8 @@ $ codegen-example
 
 ```bash
   1. Databases
-     - MySQL : TypeORM, Sequlize
-     - MariaDB : TypeORM, Sequlize
+     - MySQL : TypeORM, Sequelize
+     - MariaDB : TypeORM, Sequelize
      - MongoDB : Mongose
 
   2. Kafka
@@ -192,7 +192,7 @@ parameters:
 > Description
 
 ```text
-1. Make sure to fill out the x-codgen-request-body-name tag.
+1. Make sure to fill out the x-codegen-request-body-name tag.
 The class name is set (Ex: BoardCreateRequest)
 
 2. If you refer to one $ref value immediately, apply the value of the referenced Model attribute
@@ -253,7 +253,7 @@ responses:
   "200":
     description: "success info"
 
-    # x-codgen-request-body-name ResponseDTO Class Name
+    # x-codegen-request-body-name ResponseDTO Class Name
     x-codegen-request-body-name: "BoardListResponse"
     content:
       application/json:
@@ -308,7 +308,7 @@ components:
       required:
         - "id"
         - "name"
-        - "eCommant"
+        - "eComment"
       properties:
         id:
           description: "board unique key"
@@ -318,7 +318,7 @@ components:
           description: "board name"
           type: string
           example: "Board Name"
-        eCommant:
+        eComment:
           description: "comment object"
           type: object
           $ref: "#/components/schemas/Comment"
@@ -330,7 +330,7 @@ components:
       required:
         - "id"
         - "name"
-        - "eCommant"
+        - "eComment"
       properties:
         id:
           description: "board unique key"
@@ -340,7 +340,7 @@ components:
           description: "board name"
           type: string
           example: "Board Name"
-        eCommant:
+        eComment:
           description: "comment object"
           type: array
           items:
@@ -367,7 +367,7 @@ components:
       required:
         - "id"
         - "name"
-        - "oneCommant"
+        - "oneComment"
         - "multiCommant"
       properties:
         id:
@@ -380,7 +380,7 @@ components:
           example: "Board Name"
 
         # In the properties attribute, a single object reference with a different data model reference method should be set to the object type
-        oneCommant:
+        oneComment:
           description: "one comment"
           type: object
           $ref: "#/components/schemas/Comment"
