@@ -29,10 +29,11 @@ export class {{domainName}}Controller {
   {{methodDecorator}}('{{paths}}')
   async {{methodName}}({{#each this.parameters}}@{{in}}('{{headerKey}}') {{variable}}:{{variableType}}, {{/each}}
       {{#each this.requestDto}}@Body() {{classVariableName}} : {{className}}, {{/each}}
+      @Req() req: Request,
       @Res() res: Response)
       {
 
-      await this.{{serviceName}}({{#each serviceParam}} {{this.variableName}},{{/each}})
+      await this.{{serviceName}}({{#each serviceParam}} {{this.variableName}},{{/each}} req)
 
       return res.status(HttpStatus.OK).json({{#typeCheck temporaryData }} {{this}} {{/typeCheck}})
     }
