@@ -10,6 +10,7 @@ import { HttpAdapterHost } from '@nestjs/core';
 import { CommonError } from './common-exception';
 
 import * as moment from 'moment';
+import { stringifyWithoutCircular } from './common';
 
 /**
  * @Catch(CommonError)
@@ -37,7 +38,7 @@ export class CommonExceptionFilter implements ExceptionFilter {
     const { httpAdapter } = this.httpAdapterHost;
     const ctx = host.switchToHttp();
 
-    this.logger.error(`${JSON.stringify(commonError.message)}`);
+    this.logger.debug(`${stringifyWithoutCircular(commonError)}`);
 
     /* 클라이언트에게 정보를 전달한다. */
     httpAdapter.reply(

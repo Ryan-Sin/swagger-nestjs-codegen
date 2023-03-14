@@ -9,6 +9,7 @@ import {
 
 import { HttpAdapterHost } from '@nestjs/core';
 import * as moment from 'moment';
+import { stringifyWithoutCircular } from './common';
 
 @Catch()
 export class AllExceptionsFilter implements ExceptionFilter {
@@ -26,7 +27,7 @@ export class AllExceptionsFilter implements ExceptionFilter {
         ? exception.getStatus()
         : HttpStatus.INTERNAL_SERVER_ERROR;
 
-    this.logger.error(`${JSON.stringify(exception.message)}`);
+    this.logger.error(`${stringifyWithoutCircular(exception)}`);
 
     httpAdapter.reply(
       ctx.getResponse(),
