@@ -5,7 +5,7 @@ import { Request } from 'express';
 @Injectable()
 export class {{domainName}}Service {
 {{#each router}}
-  {{methodName}}({{#each serviceParam}}{{this.variableName}} : {{this.variableType}},{{/each}, req: Request}) : Promise<any> {
+  {{methodName}}({{#each serviceParam}}{{this.variableName}} : {{this.variableType}},{{/each}}, req: Request}) : Promise<any> {
     return new Promise((resolve, reject) => {
       resolve({});
     });
