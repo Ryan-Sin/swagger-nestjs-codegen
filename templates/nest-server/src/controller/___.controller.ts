@@ -1,4 +1,4 @@
-import { Controller, Res, HttpStatus,
+import { Controller, Req, Res, HttpStatus,
   {{#each decorator_method}} 
     {{this}},
   {{/each}}
