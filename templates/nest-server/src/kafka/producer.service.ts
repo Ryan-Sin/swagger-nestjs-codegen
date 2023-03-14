@@ -4,7 +4,7 @@ import {
   OnModuleInit,
 } from '@nestjs/common';
 
-import { Kafka, Producer, ProducerRecord } from 'kafkajs';
+import { Kafka, Producer, ProducerRecord, Partitioners } from 'kafkajs';
 
 /**
  * @author Ryan
@@ -17,7 +17,9 @@ export class ProducerService implements OnModuleInit, OnApplicationShutdown {
     brokers: [process.env.KAFKA_HOST1],
   });
 
-  private readonly producer: Producer = this.kafa.producer();
+  private readonly producer: Producer = this.kafa.producer({
+    createPartitioner: Partitioners.DefaultPartitioner,
+  });
 
   /**
    * @author Ryan
