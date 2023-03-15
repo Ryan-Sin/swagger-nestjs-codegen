@@ -38,7 +38,7 @@ export class CommonExceptionFilter implements ExceptionFilter {
     const { httpAdapter } = this.httpAdapterHost;
     const ctx = host.switchToHttp();
 
-    this.logger.debug(`${stringifyWithoutCircular(commonError)}`);
+    this.logger.debug(`${stringifyWithoutCircular(commonError.message)}`);
 
     /* 클라이언트에게 정보를 전달한다. */
     httpAdapter.reply(
