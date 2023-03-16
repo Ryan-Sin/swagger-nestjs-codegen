@@ -27,7 +27,11 @@ export class AllExceptionsFilter implements ExceptionFilter {
         ? exception.getStatus()
         : HttpStatus.INTERNAL_SERVER_ERROR;
 
-    this.logger.error(`${stringifyWithoutCircular(exception)}`);
+    this.logger.error(
+      `Message: ${stringifyWithoutCircular(
+        exception.message,
+      )}, Stack: ${stringifyWithoutCircular(exception.stack)}`,
+    );
 
     httpAdapter.reply(
       ctx.getResponse(),
