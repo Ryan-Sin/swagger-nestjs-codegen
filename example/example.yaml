@@ -287,7 +287,7 @@ components:
       required:
         - "id"
         - "name"
-        - "eCommant"
+        - "eComment"
       properties:
         id:
           description: "board unique key"
@@ -297,7 +297,7 @@ components:
           description: "board name"
           type: string
           example: "Board Name"
-        eCommant:
+        eComment:
           description: "comment object"
           type: object
           $ref: "#/components/schemas/Comment"
@@ -309,7 +309,7 @@ components:
       required:
         - "id"
         - "name"
-        - "eCommant"
+        - "eComment"
       properties:
         id:
           description: "board unique key"
@@ -319,7 +319,7 @@ components:
           description: "board name"
           type: string
           example: "Board Name"
-        eCommant:
+        eComment:
           description: "comment object"
           type: array
           items:
@@ -346,8 +346,8 @@ components:
       required:
         - "id"
         - "name"
-        - "oneCommant"
-        - "multiCommant"
+        - "oneComment"
+        - "multiComment"
       properties:
         id:
           description: "board unique key"
@@ -359,15 +359,15 @@ components:
           example: "Board Name"
 
         # In the properties attribute, a single object reference with a different data model reference method should be set to the object type
-        oneCommant:
+        oneComment:
           description: "one comment"
           type: object
           $ref: "#/components/schemas/Comment"
 
         # If it is an array type referring to another Data Model in properties properties
         # Array type must be set to array and items must be declared
-        multiCommant:
-          description: "multi commant"
+        multiComment:
+          description: "multi comment"
           type: array
           items:
             $ref: "#/components/schemas/Comment"
