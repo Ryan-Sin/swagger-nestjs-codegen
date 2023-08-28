@@ -44,7 +44,7 @@
     "sequelize-typescript": "^2.1.5",
     {{/if}}
     {{#if (checkTypeORM moduleOptions.orm)}}
-    "typeorm": "^0.3.17"
+    "typeorm": "^0.3.17",
     {{/if}}
     {{#if (checkMongoose moduleOptions.orm)}}
     "@nestjs/mongoose": "^10.0.1",
