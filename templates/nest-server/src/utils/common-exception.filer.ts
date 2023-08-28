@@ -9,7 +9,7 @@ import {
 import { HttpAdapterHost } from '@nestjs/core';
 import { CommonError } from './common-exception';
 
-import * as moment from 'moment';
+import * as dayjs from 'dayjs';
 import { stringifyWithoutCircular } from './common';
 
 /**
@@ -45,7 +45,7 @@ export class CommonExceptionFilter implements ExceptionFilter {
       ctx.getResponse(),
       {
       common: {
-        createdAt: moment().format('YYYY-MM-DDTHH:mm:ss.SSSZ'),
+        createdAt: dayjs().format('YYYY-MM-DDTHH:mm:ss.SSSZ'),
         status: commonError.status,
         message: commonError.message,
       },

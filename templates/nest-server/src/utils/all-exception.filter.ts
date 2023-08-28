@@ -8,7 +8,7 @@ import {
 } from '@nestjs/common';
 
 import { HttpAdapterHost } from '@nestjs/core';
-import * as moment from 'moment';
+import * as dayjs from 'dayjs';
 import { stringifyWithoutCircular } from './common';
 
 @Catch()
@@ -37,7 +37,7 @@ export class AllExceptionsFilter implements ExceptionFilter {
       ctx.getResponse(),
       {
         common: {
-          createdAt: moment().format('YYYY-MM-DDTHH:mm:ss.SSSZ'),
+          createdAt: dayjs().format('YYYY-MM-DDTHH:mm:ss.SSSZ'),
           status: httpStatus >= 500 ? 'disaster' : 'fail',
           message:
             httpStatus >= 500
