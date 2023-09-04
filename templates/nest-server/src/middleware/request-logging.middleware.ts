@@ -8,9 +8,9 @@ export class RequestLoggingMiddleware implements NestMiddleware {
     this.logger = new Logger('Request');
   }
   use(req: Request, res: Response, next: NextFunction) {
-    const { body, query, path } = req;
+    const { body, query, path, method } = req;
     this.logger.log(
-      `클라이언트 요청 정보: [path] ${path} , [Request Data] body: ${JSON.stringify(
+      `클라이언트 요청 정보: [path] ${method} ${path} , [Request Data] body: ${JSON.stringify(
         body,
       )}, query: ${JSON.stringify(query)}`,
     );
