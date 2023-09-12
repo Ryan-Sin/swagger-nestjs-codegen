@@ -1,9 +1,9 @@
 import { Injectable } from '@nestjs/common';
 import { Request } from 'express';
+import { CommonError } from 'src/utils/common-exception';
 import { ERROR_TYPE } from '../utils/enum';
 import { ERROR_MESSAGE, STATUS_CODE } from '../utils/constant';
-{{#each serviceImportRequestDto}}import { {import { CommonError } from 'src/utils/common-exception';
-{this.className}} } from  {{#typeCheck this.from }} {{this}} {{/typeCheck}};{{/each}}
+{{#each serviceImportRequestDto}}import { {{this.className}} } from  {{#typeCheck this.from }} {{this}} {{/typeCheck}};{{/each}}
 
 @Injectable()
 export class {{domainName}}Service {
