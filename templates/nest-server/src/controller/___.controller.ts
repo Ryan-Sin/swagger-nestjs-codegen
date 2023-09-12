@@ -37,6 +37,6 @@ export class {{domainName}}Controller {
 
       return res.status(HttpStatus.OK).json({{#typeCheck temporaryData }} {{this}} {{/typeCheck}})
     }
-{{/each}}
 
+{{/each}}
 }

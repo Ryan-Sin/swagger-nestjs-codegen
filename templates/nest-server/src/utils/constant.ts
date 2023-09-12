@@ -12,4 +12,6 @@ export const STATUS_CODE = {
  * @author Ryan
  * @description 각 도메인 Error 메세지 정의
  */
-export const ERROR_MESSAGE = {};
+export const ERROR_MESSAGE = {
+  SERVER_ERROR: '개발팀의 문의해주세요.',
+};
