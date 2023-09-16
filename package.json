@@ -1,6 +1,6 @@
 {
   "name": "@newko/swagger-nestjs-codegen",
-  "version": "1.6.7",
+  "version": "1.6.8",
   "description": "Swagger Codegen Nest.js Framwork",
   "main": "./lib/codegen.js",
   "files": [
