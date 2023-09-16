@@ -10,6 +10,7 @@ import {
 import { HttpAdapterHost } from '@nestjs/core';
 import * as dayjs from 'dayjs';
 import { stringifyWithoutCircular } from './common';
+import { ERROR_MESSAGE } from './constant';
 
 @Catch()
 export class AllExceptionsFilter implements ExceptionFilter {
@@ -27,10 +28,13 @@ export class AllExceptionsFilter implements ExceptionFilter {
         ? exception.getStatus()
         : HttpStatus.INTERNAL_SERVER_ERROR;
 
+    const path = httpAdapter.getRequestUrl(ctx.getRequest());
+    const method = httpAdapter.getRequestMethod(ctx.getRequest());
+
     this.logger.error(
-      `Message: ${stringifyWithoutCircular(
-        exception.message,
-      )}, Stack: ${stringifyWithoutCircular(exception.stack)}`,
+      `Method: ${method} Path: ${path}
+       Message: ${stringifyWithoutCircular(exception.message)}
+       Stack: ${stringifyWithoutCircular(exception.stack)}`,
     );
 
     httpAdapter.reply(
@@ -41,7 +45,7 @@ export class AllExceptionsFilter implements ExceptionFilter {
           status: httpStatus >= 500 ? 'disaster' : 'fail',
           message:
             httpStatus >= 500
-              ? '개발 팀의 문의해주세요.'
+              ? ERROR_MESSAGE.SERVER_ERROR
               : httpStatus < 500 && httpStatus >= 400
               ? exception.response.message
               : exception.message,

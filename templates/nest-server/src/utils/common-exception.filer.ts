@@ -26,7 +26,6 @@ export class CommonExceptionFilter implements ExceptionFilter {
     private readonly logger: Logger,
   ) {}
 
-
   /**
    * @author Ryan
    * @description 예외 처리 함수
@@ -38,17 +37,31 @@ export class CommonExceptionFilter implements ExceptionFilter {
     const { httpAdapter } = this.httpAdapterHost;
     const ctx = host.switchToHttp();
 
-    this.logger.debug(`${stringifyWithoutCircular(commonError.message)}`);
+    const {
+      type,
+      status,
+      message: serverErrorMessage,
+      clientErrorMessage,
+    } = commonError;
+
+    this.logger.debug(
+      `${stringifyWithoutCircular({
+        type,
+        status,
+        serverErrorMessage,
+        clientErrorMessage,
+      })}`,
+    );
 
     /* 클라이언트에게 정보를 전달한다. */
     httpAdapter.reply(
       ctx.getResponse(),
       {
-      common: {
-        createdAt: dayjs().format('YYYY-MM-DDTHH:mm:ss.SSSZ'),
-        status: commonError.status,
-        message: commonError.message,
-      },
+        common: {
+          createdAt: dayjs().format('YYYY-MM-DDTHH:mm:ss.SSSZ'),
+          status: commonError.status,
+          message: clientErrorMessage,
+        },
       },
       200,
     );
