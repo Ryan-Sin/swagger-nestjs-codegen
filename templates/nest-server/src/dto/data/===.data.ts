@@ -3,17 +3,17 @@ import { ApiProperty } from '@nestjs/swagger';
 {{#each importRequestDto}}import { {{this.className}}Data } from './{{this.from}}.data'; {{/each}}
 
 export class {{className}}Data {
-    
-{{#each variableList}} 
+
+{{#each variableList}}
      @ApiProperty({
-       description: '{{{this.variableDescription}}}',
+      {{#if this.variableDescription}}description: '{{{this.variableDescription}}}',{{/if}}
        required: {{this.variableRequired}},
       {{#if this.varibaleExample}}example: {{#typeCheck this.varibaleExample }} '{{this}}'{{/typeCheck}} {{/if}}
-    })    
+    })
     {{#each this.variableClassValidator}}
     {{this}}
     {{/each}}
     {{{this.variable}}} {{#if this.varibaleExample}}= {{#typeCheck this.varibaleExample }}'{{this}}'{{/typeCheck}} {{/if}}
-    
+
 {{/each}}
 }
